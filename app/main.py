@@ -23,7 +23,7 @@ def extract(req: ExtractRequest):
     ents = extract_entities(req.text)
     created_at = datetime.utcnow().isoformat()
 
-    # Narrow Optional[str] -> str so Pylance is happy
+    
     src: str = req.source or "api:text"
 
     rec_id = insert_record(src, ents["persons"], ents["dates"], req.text, created_at)
