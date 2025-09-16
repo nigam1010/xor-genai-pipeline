@@ -1,0 +1,14 @@
+# venv
+.venv/
+__pycache__/
+*.pyc
+
+# data
+data/results.sqlite
+
+# n8n
+.n8n/
+
+# OS
+.DS_Store
+Thumbs.db
