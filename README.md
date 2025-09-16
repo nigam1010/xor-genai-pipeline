@@ -22,3 +22,6 @@ Webhook (POST /genai-extract)
 - examples/input/sample1.txt
 - examples/output/sample1.json (captured from API response)
 - n8n/workflow.json
+ 
+## Screenshots
+[WorkflowScreenshot1.png]
