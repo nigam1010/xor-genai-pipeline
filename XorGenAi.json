@@ -1,0 +1,168 @@
+{
+  "name": "GenAi Ingest",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "genai-extract",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c064e78a-7fe7-4538-bb1d-37916031d1ae",
+      "name": "Webhook",
+      "webhookId": "c1e465e3-3699-479e-87fb-1a4ff58d4c4b"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://4340bf9ca6f8.ngrok-free.app/extract",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"={{$json.body.text}}\",\n  \"source\": \"n8n:webhook\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "26f9b744-a1ce-47da-9475-ef7238eedf37",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "18ZCxJ73HpF_zBsaXkYUmDf9ZpNvH7EUHWlDNkrhHKsg",
+          "mode": "list",
+          "cachedResultName": "GenAi",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18ZCxJ73HpF_zBsaXkYUmDf9ZpNvH7EUHWlDNkrhHKsg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18ZCxJ73HpF_zBsaXkYUmDf9ZpNvH7EUHWlDNkrhHKsg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "persons",
+              "displayName": "persons",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "dates",
+              "displayName": "dates",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        0
+      ],
+      "id": "7f2b7058-8ea3-40b1-a11f-c8a753a40f0b",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "j5QcXQZrVYkmzgPw",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "641856c3-69df-4ee6-96b2-679e066455b2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8a85097aa36ce39c66c6591d1f5d94076358ff8fc1a6837d6b002480004b12b4"
+  },
+  "id": "sMy9O93wOKU2cSsd",
+  "tags": []
+}
