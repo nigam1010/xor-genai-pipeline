@@ -23,5 +23,27 @@ Webhook (POST /genai-extract)
 - examples/output/sample1.json (captured from API response)
 - n8n/workflow.json
  
-## Screenshots
-[WorkflowScreenshot1.png]
+## n8n Workflow Integration
+
+This project integrates with **n8n** to automate the pipeline:
+1. **Webhook Node** → receives text input.
+2. **HTTP Request Node** → sends text to our FastAPI `/extract` endpoint.
+3. **Google Sheets Node** → appends extracted data into a sheet.
+
+### Workflow Export
+The full workflow is available in [XorGenAi.json](XorGenAi.json).  
+You can import it into n8n directly.
+
+### Screenshots
+
+#### Workflow Overview
+![Workflow 1](Screenshots/WorkflowScreenshot1.png)
+![Workflow 2](Screenshots/WorkflowScreenshot2.png)
+
+#### Execution Example
+![Workflow 3](Screenshots/WorkflowScreenshot3.png)
+![Workflow 4](Screenshots/WorkflowScreenshot4.png)
+
+#### Google Sheets Output
+![Workflow 5](Screenshots/WorkflowScreenshot5.png)
+![Workflow 6](Screenshots/WorkflowScreenshot6.png)
